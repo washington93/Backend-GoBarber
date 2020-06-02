@@ -1,0 +1,42 @@
+{
+  "env": {
+      "es6": true,
+      "node": true
+  },
+  "extends": [
+      "standard",
+      "plugin:@typescript-eslint/recommended",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+  ],
+  "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "@typescript-eslint",
+      "prettier"
+  ],
+  "rules": {
+    "no-useless-constructor":"off",
+    "@typescript-eslint/interface-name-prefix": ["error",{ "prefixWithI": "always" }],
+    "prettier/prettier":"error",
+    "no-unused-vars":["off",{"vars":"globals"}],
+    "no-var":"warn",
+    "@typescript-eslint/no-unused-vars":["error",{
+      "argsIgnorePattern":"_"
+    }],
+    "@typescript-eslint/camelcase":"off",
+    "import/extensions":["error","ignorePackages",{"ts": "never"}]
+  },
+  "settings": {
+    "import/resolver":{
+      "typescript": {}
+    }
+  }
+}
