@@ -16,8 +16,4 @@ export default class UsersController {
     delete user.password
     return response.json(user)
   }
-
-  // public async create(request: Request, response: Response): Promise<Response> {
-
-  // }
 }
