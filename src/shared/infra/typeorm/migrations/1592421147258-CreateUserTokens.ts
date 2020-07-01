@@ -25,7 +25,7 @@ export default class CreateUserTokens1592421147258
             type: 'uuid',
           },
           {
-            name: 'create_at',
+            name: 'created_at',
             type: 'timestamp',
             default: 'now()',
           },
@@ -50,6 +50,6 @@ export default class CreateUserTokens1592421147258
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('user_token')
+    await queryRunner.dropTable('user_tokens')
   }
 }

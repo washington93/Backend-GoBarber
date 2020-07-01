@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import uploadconfig from '@config/upload'
 
-import IStorageProvider from '@shared/container/provider/StorageProvider/models/IStorageProvider'
+import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider'
 
 class DiskStorageProvider implements IStorageProvider {
   public async saveFile(file: string): Promise<string> {
