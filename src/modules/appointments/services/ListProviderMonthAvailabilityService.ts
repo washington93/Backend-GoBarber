@@ -1,10 +1,7 @@
 import { inject, injectable } from 'tsyringe'
+import { getDaysInMonth, getDate } from 'date-fns'
 
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepositorio'
-
-import User from '@modules/users/infra/typeorm/entities/User'
-import IUsersRepository from '@modules/users/repositories/IUsersRepository'
-import AppointmentRepository from '../infra/typeorm/repositories/AppointmentsRepository'
 
 interface IRequest {
   provider_id: string
@@ -36,9 +33,22 @@ class ListProviderMonthAvailabilityService {
         year,
       },
     )
-    console.log(appointmentsInMonth)
+    const numberOfDaysInMonth = getDaysInMonth(new Date(year, month - 1))
 
-    return [{ day: 1, available: false }]
+    const eachDayArray = Array.from(
+      { length: numberOfDaysInMonth },
+      (_, index) => index + 1,
+    )
+
+    const availability = eachDayArray.map(day => {
+      const appointmentsInDay = appointmentsInMonth.filter(appointment => {
+        return getDate(appointment.date) === day
+      })
+
+      return { day, available: appointmentsInDay.length < 10 }
+    })
+
+    return availability
   }
 }
 
